@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+
+<h2 class="mb-4">Dashboard</h2>
+
+<div class="row">
+
+    <div class="col-md-4">
+
+        <div class="card text-bg-primary mb-3 shadow">
+
+            <div class="card-body">
+
+                <h5>Total Productos</h5>
+
+                <h1>{{ total_productos }}</h1>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <div class="card text-bg-danger mb-3 shadow">
+
+            <div class="card-body">
+
+                <h5>Stock Bajo</h5>
+
+                <h1>{{ stock_bajo }}</h1>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <div class="card text-bg-success mb-3 shadow">
+
+            <div class="card-body">
+
+                <h5>Valor del Inventario</h5>
+
+                <h2>${{ "%.2f"|format(valor_inventario) }}</h2>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
