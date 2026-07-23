@@ -2,11 +2,45 @@ body{
 
     background:#f4f6f9;
 
+    margin:0;
+
+    overflow-x:hidden;
+
+    -webkit-overflow-scrolling:touch;
+
 }
+
+
+
+/* =========================
+   ESTRUCTURA
+========================= */
+
+
+.layout{
+
+    display:flex;
+
+    width:100%;
+
+    min-height:100vh;
+
+}
+
+
+
+
+
+/* =========================
+   MENU PC
+========================= */
+
 
 .sidebar{
 
     width:240px;
+
+    min-width:240px;
 
     height:100vh;
 
@@ -16,7 +50,19 @@ body{
 
     position:fixed;
 
+    top:0;
+
+    left:0;
+
+    overflow-y:auto;
+
+    z-index:1000;
+
+    -webkit-transform:translateZ(0);
+
 }
+
+
 
 .sidebar a{
 
@@ -30,18 +76,353 @@ body{
 
 }
 
+
+
 .sidebar a:hover{
 
     background:#0d6efd;
 
 }
 
+
+
+.logo-empresa{
+
+    width:120px;
+
+    height:120px;
+
+    object-fit:contain;
+
+}
+
+
+
+
+
+/* =========================
+   CONTENIDO
+========================= */
+
+
 .contenido{
 
     margin-left:240px;
 
-    width:100%;
+    width:calc(100% - 240px);
 
     padding:25px;
+
+    box-sizing:border-box;
+
+    overflow:hidden;
+
+}
+
+
+
+
+
+/* Evitar desbordes */
+
+
+.contenido *{
+
+    max-width:100%;
+
+}
+
+
+
+.row{
+
+    margin-left:0 !important;
+
+    margin-right:0 !important;
+
+}
+
+
+
+.card{
+
+    width:100%;
+
+}
+
+
+
+.table-responsive{
+
+    width:100%;
+
+    overflow-x:auto;
+
+    -webkit-overflow-scrolling:touch;
+
+}
+
+
+
+canvas{
+
+    max-width:100% !important;
+
+    height:auto !important;
+
+}
+
+
+
+
+
+/* =========================
+   MENU MOVIL
+========================= */
+
+
+.menu-movil{
+
+    display:block;
+
+    color:white;
+
+    padding:12px;
+
+    text-decoration:none;
+
+}
+
+
+
+.menu-movil:hover{
+
+    background:#0d6efd;
+
+}
+
+
+
+
+
+/* =========================
+   IPHONE / CELULAR
+========================= */
+
+
+@media(max-width:768px){
+
+
+    body{
+
+        width:100%;
+
+        overflow-x:hidden;
+
+    }
+
+
+
+    .layout{
+
+        display:block;
+
+        width:100%;
+
+    }
+
+
+
+    .sidebar{
+
+        display:none !important;
+
+    }
+
+
+
+    .contenido{
+
+        margin-left:0 !important;
+
+        width:100% !important;
+
+        padding:10px !important;
+
+        overflow:hidden;
+
+    }
+
+
+
+    .navbar{
+
+        width:100%;
+
+    }
+
+
+
+    .container-fluid{
+
+        width:100% !important;
+
+        padding-left:10px;
+
+        padding-right:10px;
+
+    }
+
+
+
+    .row{
+
+        width:100% !important;
+
+    }
+
+
+
+    .card{
+
+        width:100% !important;
+
+    }
+
+
+
+    canvas{
+
+        width:100% !important;
+
+    }
+
+
+
+    .offcanvas{
+
+        width:85% !important;
+
+    }
+
+
+
+}
+
+
+
+
+
+/* =========================
+   IMPRESION
+========================= */
+
+
+@media print{
+
+
+    .sidebar,
+    .navbar,
+    .btn,
+    .offcanvas{
+
+        display:none !important;
+
+    }
+
+
+
+    .contenido{
+
+        margin:0 !important;
+
+        width:100% !important;
+
+        padding:0 !important;
+
+    }
+
+
+
+    table{
+
+        width:100% !important;
+
+    }
+
+
+}
+   
+
+
+/* CORRECCION ESPECIFICA IOS IPHONE */
+
+@media only screen and (max-width: 768px){
+
+    html,
+    body{
+
+        width:100% !important;
+
+        overflow-x:hidden !important;
+
+    }
+
+
+    .layout{
+
+        display:block !important;
+
+        width:100% !important;
+
+    }
+
+
+    .sidebar{
+
+        display:none !important;
+
+        width:0 !important;
+
+        min-width:0 !important;
+
+        height:0 !important;
+
+        overflow:hidden !important;
+
+    }
+
+
+    .contenido{
+
+        display:block !important;
+
+        position:relative !important;
+
+        left:0 !important;
+
+        margin-left:0 !important;
+
+        width:100% !important;
+
+        max-width:100% !important;
+
+        padding:10px !important;
+
+    }
+
+
+    .navbar{
+
+        width:100% !important;
+
+    }
+
+
+    .container-fluid{
+
+        width:100% !important;
+
+    }
 
 }

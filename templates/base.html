@@ -5,101 +5,470 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
-<title>Sistema Inventario</title>
+
+
+<title>INVENTARIO EMYE</title>
+
+
+<!-- Bootstrap -->
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 
+
+<!-- Bootstrap Icons -->
+
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css" rel="stylesheet">
 
-<link href="https://cdn.datatables.net/2.3.4/css/dataTables.bootstrap5.css" rel="stylesheet">
+
+<!-- DataTables -->
 
 <link rel="stylesheet"
-href="{{ url_for('static', filename='css/style.css') }}">
+href="https://cdn.datatables.net/1.13.8/css/dataTables.bootstrap5.min.css">
+
+
+<!-- Select2 -->
+
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet">
+
+
+<!-- CSS propio -->
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='css/style.css') }}?v=4">
+
+
 
 </head>
 
+
+
 <body>
 
-<div class="d-flex">
 
-    <!-- Sidebar -->
+<div class="layout">
 
-    <div class="sidebar">
 
-        <h3 class="text-center mt-3">
-            📦 Inventario
-        </h3>
+<!-- =========================
+     SIDEBAR PC
+========================= -->
 
-        <hr>
 
-        <a href="/">
-            <i class="bi bi-speedometer2"></i>
-            Dashboard
-        </a>
+<div class="sidebar">
 
-        <a href="/productos">
-            <i class="bi bi-box-seam"></i>
-            Productos
-        </a>
 
-        <a href="#">
-            <i class="bi bi-cart"></i>
-            Ventas
-        </a>
+<div class="text-center mt-3">
 
-        <a href="#">
-            <i class="bi bi-truck"></i>
-            Compras
-        </a>
 
-        <a href="#">
-            <i class="bi bi-people"></i>
-            Clientes
-        </a>
+{% if empresa and empresa.logo %}
 
-        <a href="#">
-            <i class="bi bi-bar-chart"></i>
-            Reportes
-        </a>
+<img
+src="{{ url_for('static', filename=empresa.logo) }}"
+class="logo-empresa">
 
-    </div>
 
-    <!-- Contenido -->
+{% endif %}
 
-    <div class="contenido">
 
-        <nav class="navbar bg-white shadow-sm mb-4">
 
-            <div class="container-fluid">
+<h4 class="text-white">
 
-                <span class="navbar-brand">
+{% if empresa %}
 
-                    Sistema de Inventario
+{{ empresa.nombre }}
 
-                </span>
+{% else %}
 
-            </div>
+EMYE CUU
 
-        </nav>
+{% endif %}
 
-        {% block contenido %}
+</h4>
 
-        {% endblock %}
-
-    </div>
 
 </div>
 
+
+<hr>
+
+
+
+<a href="/">
+<i class="bi bi-speedometer2"></i>
+Menu
+</a>
+
+
+<a href="/productos">
+<i class="bi bi-box-seam"></i>
+Productos
+</a>
+
+
+<a href="/ventas">
+<i class="bi bi-cart"></i>
+Ventas
+</a>
+
+
+<a href="/compras">
+<i class="bi bi-truck"></i>
+Compras
+</a>
+
+
+<a href="/clientes">
+<i class="bi bi-people"></i>
+Clientes
+</a>
+
+
+<a href="/proveedores">
+<i class="bi bi-building"></i>
+Proveedores
+</a>
+
+
+<a href="/kardex">
+<i class="bi bi-clock-history"></i>
+Kardex
+</a>
+
+
+<a href="/reportes">
+<i class="bi bi-bar-chart"></i>
+Reportes
+</a>
+
+
+<a href="/ganancias">
+
+<i class="bi bi-cash-coin"></i>
+
+Ganancias
+
+</a>
+
+
+<a href="/empresa">
+
+<i class="bi bi-building-gear"></i>
+
+Empresa
+
+</a>
+
+
+
+<a href="/respaldo">
+
+<i class="bi bi-database-check"></i>
+
+Copia de seguridad
+
+</a>
+
+
+
+<a href="/restaurar">
+
+<i class="bi bi-arrow-counterclockwise"></i>
+
+Restaurar respaldo
+
+</a>
+
+
+
+</div>
+
+
+
+
+
+<!-- =========================
+     MENU MOVIL
+========================= -->
+
+
+<div class="offcanvas offcanvas-start bg-dark text-white"
+id="menuMovil"
+tabindex="-1">
+
+
+<div class="offcanvas-header">
+
+
+<h5>
+
+INVENTARIO EMYE
+
+</h5>
+
+
+
+<button type="button"
+class="btn-close btn-close-white"
+data-bs-dismiss="offcanvas">
+
+</button>
+
+
+</div>
+
+
+
+<div class="offcanvas-body">
+
+
+
+<a href="/" class="menu-movil">
+
+<i class="bi bi-speedometer2"></i>
+Menu
+
+</a>
+
+
+<a href="/productos" class="menu-movil">
+
+<i class="bi bi-box-seam"></i>
+Productos
+
+</a>
+
+
+<a href="/ventas" class="menu-movil">
+
+<i class="bi bi-cart"></i>
+Ventas
+
+</a>
+
+
+<a href="/compras" class="menu-movil">
+
+<i class="bi bi-truck"></i>
+Compras
+
+</a>
+
+
+<a href="/clientes" class="menu-movil">
+
+<i class="bi bi-people"></i>
+Clientes
+
+</a>
+
+
+<a href="/proveedores" class="menu-movil">
+
+<i class="bi bi-building"></i>
+Proveedores
+
+</a>
+
+
+<a href="/kardex" class="menu-movil">
+
+<i class="bi bi-clock-history"></i>
+Kardex
+
+</a>
+
+
+<a href="/reportes" class="menu-movil">
+
+<i class="bi bi-bar-chart"></i>
+Reportes
+
+</a>
+
+
+<a href="/ganancias" class="menu-movil">
+
+<i class="bi bi-cash-coin"></i>
+Ganancias
+
+</a>
+
+
+<a href="/empresa" class="menu-movil">
+
+<i class="bi bi-building-gear"></i>
+Empresa
+
+</a>
+
+
+<a href="/respaldo" class="menu-movil">
+
+<i class="bi bi-database-check"></i>
+Copia de seguridad
+
+</a>
+
+
+
+<a href="/restaurar" class="menu-movil">
+
+<i class="bi bi-arrow-counterclockwise"></i>
+Restaurar respaldo
+
+</a>
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<!-- =========================
+     CONTENIDO
+========================= -->
+
+
+<div class="contenido">
+
+
+
+<nav class="navbar bg-white shadow-sm mb-4">
+
+
+<div class="container-fluid">
+
+
+
+<button class="btn btn-dark d-md-none"
+type="button"
+data-bs-toggle="offcanvas"
+data-bs-target="#menuMovil">
+
+
+<i class="bi bi-list"></i>
+
+
+</button>
+
+
+
+
+<span class="navbar-brand">
+
+INVENTARIO EMYE
+
+</span>
+
+
+
+</div>
+
+
+</nav>
+
+
+
+
+
+<!-- MENSAJES -->
+
+
+{% with mensajes = get_flashed_messages(with_categories=true) %}
+
+
+{% if mensajes %}
+
+
+{% for categoria, mensaje in mensajes %}
+
+
+<div class="alert alert-{{ categoria }} alert-dismissible fade show">
+
+
+{{ mensaje }}
+
+
+<button type="button"
+class="btn-close"
+data-bs-dismiss="alert">
+
+</button>
+
+
+</div>
+
+
+{% endfor %}
+
+
+{% endif %}
+
+
+{% endwith %}
+
+
+
+
+
+
+{% block contenido %}
+
+{% endblock %}
+
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<!-- JS -->
+
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
-<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 
-<script src="https://cdn.datatables.net/2.3.4/js/dataTables.js"></script>
+<script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
 
-<script src="https://cdn.datatables.net/2.3.4/js/dataTables.bootstrap5.js"></script>
+
+<script src="https://cdn.datatables.net/1.13.8/js/dataTables.bootstrap5.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+
+
+{% block scripts %}
+
+{% endblock %}
+
+
 
 </body>
 
 </html>
+
+
