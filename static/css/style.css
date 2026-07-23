@@ -426,3 +426,138 @@ canvas{
     }
 
 }
+
+
+/* CORRECCION IPHONE VERTICAL */
+
+html, body{
+
+    width:100%;
+
+    max-width:100%;
+
+    overflow-x:hidden;
+
+}
+
+
+
+@media(max-width:768px){
+
+
+    .layout{
+
+        display:block !important;
+
+        width:100% !important;
+
+        max-width:100% !important;
+
+    }
+
+
+
+    .contenido{
+
+        margin:0 !important;
+
+        padding:10px !important;
+
+        width:100% !important;
+
+        max-width:100% !important;
+
+        overflow-x:hidden !important;
+
+    }
+
+
+
+    .contenido .container,
+    .contenido .container-fluid{
+
+        width:100% !important;
+
+        max-width:100% !important;
+
+        padding-left:10px !important;
+
+        padding-right:10px !important;
+
+    }
+
+
+
+    .contenido .row{
+
+        width:100% !important;
+
+        max-width:100% !important;
+
+        margin-left:0 !important;
+
+        margin-right:0 !important;
+
+    }
+
+
+
+    .contenido [class*="col-"]{
+
+        max-width:100% !important;
+
+    }
+
+
+
+    table{
+
+        max-width:100% !important;
+
+    }
+
+
+
+    img{
+
+        max-width:100%;
+
+        height:auto;
+
+    }
+
+}
+
+/* TABLAS RESPONSIVE EN CELULAR */
+
+.table-responsive{
+
+    width:100%;
+
+    overflow-x:auto;
+
+    -webkit-overflow-scrolling:touch;
+
+}
+
+
+
+.table-responsive table{
+
+    min-width:700px;
+
+}
+
+
+
+@media(max-width:768px){
+
+
+    .table-responsive{
+
+        border-radius:10px;
+
+    }
+
+
+}
