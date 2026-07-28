@@ -1,3 +1,4 @@
+import os
 from flask import Flask
 
 from models.database import db, Empresa
@@ -14,10 +15,11 @@ from routes.respaldo import respaldo_bp
 from routes.ganancias import ganancias_bp
 from routes.empresa import empresa_bp
 
-
 app = Flask(__name__)
 
-
+# ==========================
+# DATOS DE LA EMPRESA
+# ==========================
 @app.context_processor
 def datos_empresa():
 
@@ -27,22 +29,45 @@ def datos_empresa():
         "empresa": empresa
     }
 
+# ==========================
+# CONFIGURACIÓN
+# ==========================
 
 app.config["SECRET_KEY"] = "inventario2026"
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///database.db"
+
+database_url = os.getenv("DATABASE_URL")
+
+if database_url:
+    database_url = database_url.replace(
+        "postgres://",
+        "postgresql://",
+        1
+    )
+
+app.config["SQLALCHEMY_DATABASE_URI"] = (
+    database_url or "sqlite:///database.db"
+)
+
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
+# ==========================
+# BASE DE DATOS
+# ==========================
 
 db.init_app(app)
 
 with app.app_context():
     db.create_all()
 
+# ==========================
+# BLUEPRINTS
+# ==========================
+
 app.register_blueprint(dashboard_bp)
 app.register_blueprint(productos_bp)
 app.register_blueprint(clientes_bp)
-app.register_blueprint (proveedores_bp)
-app.register_blueprint (ventas_bp)
+app.register_blueprint(proveedores_bp)
+app.register_blueprint(ventas_bp)
 app.register_blueprint(compras_bp)
 app.register_blueprint(reportes_bp)
 app.register_blueprint(kardex_bp)
@@ -50,8 +75,10 @@ app.register_blueprint(respaldo_bp)
 app.register_blueprint(ganancias_bp)
 app.register_blueprint(empresa_bp)
 
+# ==========================
+# EJECUTAR
+# ==========================
+
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=5000, debug=False)
-
-
     
