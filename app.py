@@ -57,7 +57,16 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db.init_app(app)
 
 with app.app_context():
+ print("=" * 60)
+ print("BASE DE DATOS:", app.config["SQLALCHEMY_DATABASE_URI"])
+ print("=" * 60)
+
+with app.app_context():
     db.create_all()
+
+
+
+    
 
 # ==========================
 # BLUEPRINTS
@@ -81,4 +90,3 @@ app.register_blueprint(empresa_bp)
 
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=5000, debug=False)
-    
