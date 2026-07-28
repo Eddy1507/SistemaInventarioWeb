@@ -6,7 +6,8 @@
 
 <hr>
 
-<table id="tablaVentas" class="table table-striped table-hover">
+<div class="table-responsive">
+<table id="tablaVentas" class="table tabla table-striped table-hover">
 
     <thead class="table-dark">
 
@@ -42,33 +43,13 @@
     </tbody>
 
 </table>
+</div>
 
 {% endblock %}
 
 {% block scripts %}
 
-<script>
 
-$(document).ready(function(){
-
-    $('#tablaVentas').DataTable({
-
-        language:{
-            search:"Buscar:",
-            lengthMenu:"Mostrar _MENU_ registros",
-            info:"Mostrando _START_ a _END_ de _TOTAL_ registros",
-            zeroRecords:"No se encontraron registros",
-            paginate:{
-                previous:"Anterior",
-                next:"Siguiente"
-            }
-        }
-
-    });
-
-});
-
-</script>
 
 {% endblock %}
 

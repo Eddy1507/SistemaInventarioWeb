@@ -44,62 +44,11 @@ href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.bootstrap5.min.
 <!-- CSS propio -->
 
 <link rel="stylesheet"
-href="{{ url_for('static', filename='css/style.css') }}?v=5">
+href="{{ url_for('static', filename='css/style.css') }}?v=6">
 
 
 
-<style>
 
-
-html,body{
-
-    width:100%;
-
-    max-width:100%;
-
-    overflow-x:hidden;
-
-}
-
-
-
-.layout{
-
-    width:100%;
-
-}
-
-
-
-.contenido{
-
-    min-width:0;
-
-}
-
-
-
-.table-responsive{
-
-    width:100%;
-
-    overflow-x:auto;
-
-    -webkit-overflow-scrolling:touch;
-
-}
-
-
-
-.table-responsive table{
-
-    min-width:700px;
-
-}
-
-
-
-</style>
 
 
 </head>
@@ -428,9 +377,7 @@ Restaurar respaldo
      CONTENIDO PRINCIPAL
 ========================= -->
 
-
-<div class="contenido">
-
+<div class="content">
 
 
 <nav class="navbar bg-white shadow-sm mb-4">
@@ -517,7 +464,23 @@ data-bs-dismiss="alert">
 
 {% endblock %}
 
+  
 
+
+<footer class="text-center bg-dark text-white py-2 mt-4 footer-pequeno">
+
+    <strong>
+        EMYE INVENTORY
+    </strong>
+
+    <br>
+
+    <small>
+        Sistema de Inventario © 2026 |
+        Desarrollado por Eddy Javalera
+    </small>
+
+</footer>
 
 
 
@@ -526,6 +489,12 @@ data-bs-dismiss="alert">
 
 
 </div>
+
+
+
+
+
+
 
 <!-- =========================
      JAVASCRIPT
@@ -582,7 +551,7 @@ $(document).ready(function(){
     $('.tabla').DataTable({
 
 
-        responsive:true,
+        responsive:false,
 
 
         autoWidth:false,
@@ -646,6 +615,11 @@ $(document).ready(function(){
 {% block scripts %}
 
 {% endblock %}
+
+
+
+
+
 
 
 

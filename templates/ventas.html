@@ -220,11 +220,12 @@ name="carrito">
 
 
 
+<div class="table-responsive">
 <table
 
 id="tablaCarrito"
 
-class="table table-bordered table-hover tabla nowrap"
+class="table tabla table-bordered table-hover tabla nowrap"
 
 style="width:100%">
 
@@ -269,6 +270,7 @@ style="width:100%">
 
 
 </table>
+</div>
 
 
 
@@ -342,11 +344,12 @@ Guardar Venta
 
 
 
+<div class="table-responsive">
 <table
 
 id="tablaVentas"
 
-class="table table-striped table-hover tabla nowrap"
+class="table tabla table-striped table-hover tabla nowrap"
 
 style="width:100%">
 
@@ -501,6 +504,7 @@ Ticket
 
 
 </table>
+</div>
 
 
 
@@ -521,91 +525,7 @@ Ticket
 
 
 
-<script>
 
-
-$(document).ready(function(){
-
-
-
-
-
-$('#tablaVentas').DataTable({
-
-
-
-responsive:false,
-
-
-scrollX:true,
-
-
-autoWidth:false,
-
-
-
-pageLength:5,
-
-
-
-order:[[0,'desc']],
-
-
-
-
-language:{
-
-
-
-search:"Buscar:",
-
-
-
-lengthMenu:"Mostrar _MENU_ registros",
-
-
-
-info:"Mostrando _START_ a _END_ de _TOTAL_ registros",
-
-
-
-zeroRecords:"No se encontraron registros",
-
-
-
-
-paginate:{
-
-
-
-previous:"Anterior",
-
-
-next:"Siguiente"
-
-
-
-}
-
-
-
-}
-
-
-
-
-});
-
-
-
-
-
-});
-
-
-
-
-</script>
 
 
 

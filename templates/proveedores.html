@@ -32,11 +32,12 @@ Nuevo Proveedor
 
 
 
+<div class="table-responsive">
 <table 
 
 id="tablaProveedores"
 
-class="table table-striped table-hover tabla nowrap"
+class="table tabla table-striped table-hover tabla nowrap"
 
 style="width:100%">
 
@@ -182,6 +183,7 @@ Eliminar
 
 
 </table>
+</div>
 
 
 
@@ -204,79 +206,7 @@ Eliminar
 
 
 
-<script>
 
-
-$(document).ready(function(){
-
-
-
-$('#tablaProveedores').DataTable({
-
-
-
-responsive:false,
-
-
-scrollX:true,
-
-
-autoWidth:false,
-
-
-
-pageLength:10,
-
-
-
-language:{
-
-
-
-search:"Buscar:",
-
-
-
-lengthMenu:"Mostrar _MENU_ registros",
-
-
-
-info:"Mostrando _START_ a _END_ de _TOTAL_ registros",
-
-
-
-zeroRecords:"No se encontraron registros",
-
-
-
-paginate:{
-
-
-
-previous:"Anterior",
-
-
-next:"Siguiente"
-
-
-
-}
-
-
-
-}
-
-
-
-});
-
-
-
-});
-
-
-
-</script>
 
 
 
