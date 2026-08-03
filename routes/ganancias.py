@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template
-from models.database import Producto
+from models.database import DetalleVenta
 
 ganancias_bp = Blueprint("ganancias", __name__)
 
@@ -7,27 +7,43 @@ ganancias_bp = Blueprint("ganancias", __name__)
 @ganancias_bp.route("/ganancias")
 def ganancias():
 
-    productos = Producto.query.all()
+    detalles = DetalleVenta.query.all()
 
     total_costo = 0
     total_venta = 0
     utilidad_total = 0
 
-    for producto in productos:
+    productos = []
 
-        producto.utilidad = producto.precio - producto.costo
+    for detalle in detalles:
 
-        producto.valor_stock = producto.stock * producto.precio
+        costo_total = detalle.costo_unitario * detalle.cantidad
 
-        producto.utilidad_stock = (
-            producto.utilidad * producto.stock
-        )
+        venta_total = detalle.precio * detalle.cantidad
 
-        total_costo += producto.costo * producto.stock
+        utilidad = venta_total - costo_total
 
-        total_venta += producto.precio * producto.stock
+        total_costo += costo_total
 
-        utilidad_total += producto.utilidad_stock
+        total_venta += venta_total
+
+        utilidad_total += utilidad
+
+        productos.append({
+
+            "codigo": detalle.producto.codigo,
+
+            "nombre": detalle.producto.nombre,
+
+            "costo": detalle.costo_unitario,
+
+            "precio": detalle.precio,
+
+            "cantidad": detalle.cantidad,
+
+            "utilidad": utilidad
+
+        })
 
     margen = 0
 
@@ -35,9 +51,9 @@ def ganancias():
 
         margen = (utilidad_total / total_venta) * 100
 
-    labels = [producto.nombre for producto in productos]
+    labels = [p["nombre"] for p in productos]
 
-    datos = [producto.utilidad for producto in productos]
+    datos = [p["utilidad"] for p in productos]
 
     return render_template(
 
