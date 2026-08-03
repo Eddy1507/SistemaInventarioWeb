@@ -8,9 +8,7 @@ from models.database import (
     DetalleVenta,
     MovimientoInventario,
     Empresa
-
 )
-
 
 ventas_bp = Blueprint("ventas", __name__)
 
@@ -30,14 +28,12 @@ def ventas():
         Venta.fecha.desc()
     ).all()
 
-
     return render_template(
         "ventas.html",
         clientes=clientes,
         productos=productos,
         historial=historial
     )
-
 
 
 # ==========================
@@ -49,11 +45,9 @@ def guardar_venta():
 
     datos = request.get_json()
 
-
     cliente_id = datos["cliente"]
 
     carrito = datos["carrito"]
-
 
     if len(carrito) == 0:
 
@@ -62,16 +56,12 @@ def guardar_venta():
             "error": "El carrito está vacío."
         })
 
-
     total = 0
 
-
     # Validar productos y stock
-
     for item in carrito:
 
         producto = Producto.query.get(item["id"])
-
 
         if producto is None:
 
@@ -80,7 +70,6 @@ def guardar_venta():
                 "error": "Producto no encontrado."
             })
 
-
         if item["cantidad"] > producto.stock:
 
             return jsonify({
@@ -88,36 +77,21 @@ def guardar_venta():
                 "error": f"No hay suficiente stock de {producto.nombre}"
             })
 
-
         total += item["subtotal"]
 
-
-
     # Crear venta
-
     venta = Venta(
-
         cliente_id=cliente_id,
-
         total=total
-
     )
 
-
     db.session.add(venta)
-
     db.session.commit()
 
-
-
-    # Crear detalles + Kardex
-
+    # Crear detalles y descontar inventario
     for item in carrito:
 
-
         producto = Producto.query.get(item["id"])
-
-
 
         detalle = DetalleVenta(
 
@@ -129,23 +103,17 @@ def guardar_venta():
 
             precio=item["precio"],
 
+            costo_unitario=producto.costo,
+
             subtotal=item["subtotal"]
 
         )
 
-
         db.session.add(detalle)
-
-
-
-        # Guardar movimiento Kardex
 
         stock_anterior = producto.stock
 
-
         producto.stock -= item["cantidad"]
-
-
 
         movimiento = MovimientoInventario(
 
@@ -163,20 +131,13 @@ def guardar_venta():
 
         )
 
-
         db.session.add(movimiento)
 
-
-
     db.session.commit()
-
-
 
     return jsonify({
         "ok": True
     })
-
-
 
 
 # ==========================
@@ -188,11 +149,11 @@ def detalle_venta(id):
 
     venta = Venta.query.get_or_404(id)
 
-
     return render_template(
         "detalle_venta.html",
         venta=venta
     )
+
 
 # ==========================
 # TICKET DE VENTA
@@ -205,13 +166,8 @@ def ticket_venta(id):
 
     empresa = Empresa.query.first()
 
-
     return render_template(
-
         "ticket_venta.html",
-
         venta=venta,
-
         empresa=empresa
-
     )
