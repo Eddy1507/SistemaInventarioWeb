@@ -130,7 +130,14 @@ class DetalleVenta(db.Model):
 
     cantidad = db.Column(db.Integer)
 
+    # Precio al que se vendió
     precio = db.Column(db.Float)
+
+    # Costo que tenía el producto al momento de la venta
+    costo_unitario = db.Column(
+        db.Float,
+        default=0
+    )
 
     subtotal = db.Column(db.Float)
 
@@ -139,7 +146,9 @@ class DetalleVenta(db.Model):
         backref="detalles"
     )
 
-    producto = db.relationship("Producto")
+    producto = db.relationship(
+        "Producto"
+    )
 
     # ==========================
 # COMPRAS
